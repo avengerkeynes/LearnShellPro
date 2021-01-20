@@ -151,3 +151,22 @@ This is the second trial of the test script.
 ###### p,表明原先行的内容要打印出来;
 ###### w file,将替换的结果写到文件中
 
+```
+$sed 's/test/trial/2' data4.txt
+
+This is a test of the trial script.
+This is the second test of the trial script.
+```
+
+```
+$sed 's/test/trial/g' data4.txt
+
+This is a trial of the trial script.
+This is the second trial of the trial script.
+```
+
+###### p替换标记会打印与替换命令中指定的模式匹配的行,通常与-n选项一起使用,sed -n选项禁止编辑器输出,但p会输出修改过的行
+```
+cat data5.txt
+
+```
