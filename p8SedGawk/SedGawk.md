@@ -1,4 +1,4 @@
-##Sed
+## Sed
 
 #### Sed编辑器被称作流编辑器，和普通的交互式文本编辑器恰好相反。在交互式文本编辑器中，可以用键盘命令来交互式地插入、删除或替换数据中的文本。流编辑器则会在编辑器处理数据之前基于预先提供的一组规则来编辑数据流。
 #### Sed编辑器可以根据命令来处理数据流中的数据，这些命令要么从命令中输入，要么存储在一个命令文本文件中。
@@ -111,4 +111,43 @@ $gawk 'BEGIN {print "The data3 File Contents:"}
 >{print $0}
 >END {print "End of File"}' data3.txt
 ```
+
+```
+$cat script4.gawk
+BEGIN {
+print "The latest list of users and shells"
+print "UserID \t Shell"
+print "-------- \t --------"
+FS=":"
+}
+{
+print $1 "    \t" $7
+}
+END {
+print "This concludes the listing"
+}
+
+
+gawk -f script4.gawk /etc/passwd
+```
+
+#### sed编辑器基础
+##### 替换标记
+```
+$cat data4.txt
+This is a test of the test script.
+This is the second test of the test script.
+
+sed 's/test/trial/' data4.txt
+This is a trial of the test script.
+This is the second trial of the test script.
+```
+
+###### 替换命令在替换多行中的文本时能正常工作，但默认情况下它只替换每行中出现的第一处，要让替换命令能够替换一行中不同地方出现的文本必须使用替换标记。替换标记在替换命令字符串之后设置。
+
+###### 有四种可用的替换标记:
+###### 数字，表明新文本将替换第几处模式匹配的地方;
+###### g,表明新文本将会替换所有匹配的文本;
+###### p,表明原先行的内容要打印出来;
+###### w file,将替换的结果写到文件中
 
